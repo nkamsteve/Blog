@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <title>
+  {% block title %} Login{% endblock %}
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset("css/style.css") }}"
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-hearder">
+            <a class="navbar-brand">My Blog</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ path('home') }}">Accueil</a></li>
+            <li><a href="#">A propos</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a  href="{{ path('Form') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          </ul>
+      </div>
+    </nav>
+  </header>
+  {% block contenu %}
+
+  {% endblock %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+  {% block script %}
+
+  {% endblock %}
+  </script>
+
+<br><br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+  <h1> Login Page </h1><hr>
+  <form class="form-signin" method='post' action='{{path('login')}}'>
+  	{% if error %}
+      <div class='red'>{{ error.message }}</div><br>
+      {% endif %}
+
+      <label for="inputName" class="sr-only">User Name</label>
+      <input type="text" id="inputName" name='_username' class="form-control" placeholder="User Name" required autofocus value="{{ last_username }}"><br>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name="_password" class="form-control" placeholder="Password" required><br>
+      <div class="checkbox">
+      	<label>
+          	<input type="checkbox" value="remember-me" required checked>remember-me
+          </label>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-8 col-md-4">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</body>
+</html>

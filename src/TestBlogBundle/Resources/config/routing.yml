@@ -1,0 +1,35 @@
+home:
+  path: /home
+  defaults:
+    _controller: TestBlogBundle:Landing:index
+create_articles:
+  path: /admin/create_articles
+  defaults:
+    _controller: TestBlogBundle:Admin:created
+Form:
+  path: /inscription
+  defaults:
+    _controller: TestBlogBundle:Forms:form
+login:
+  path: /login
+  defaults:
+    _controller: TestBlogBundle:login:login
+
+logout:
+    path: /logout
+Articles:
+  path: /Articles/presentation
+  defaults:
+    _controller: TestBlogBundle:Articles:Articles
+show_articles:
+  path: /admin/show_articles
+  defaults:
+    _controller: TestBlogBundle:Admin:show
+propos:
+  path: /propos
+  defaults:
+    _controller: TestBlogBundle:Landing:propos
+manage:
+  path: admin/manageUsers
+  defaults:
+    _controller: TestBlogBundle:Admin:manageUsers

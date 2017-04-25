@@ -1,0 +1,28 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+.blogContainer-fluid{
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar {
+  border-radius: 0;
+}
+
+.imgBack {
+  width: 100%;
+  height: auto;
+}
+
+.landing-title {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+  font-size: 90px;
+  color: #F5F5DC;
+}
+
+.title-label{font-weight:400;font-size:24px;}
+.navbar-barnd{vertical-align : middle;line-height:45px;}
+.btn-primary.create {margin-top:10px;}

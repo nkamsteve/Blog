@@ -1,0 +1,3 @@
+test_blog:
+    resource: "@TestBlogBundle/Resources/config/routing.yml"
+    prefix:   /

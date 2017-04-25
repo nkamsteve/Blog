@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <title>
+  {% block title %}
+  {% endblock %}
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset("css/style.css") }}"
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-hearder">
+            <a class="navbar-brand">My Blog</a>
+          </div>
+          <ul class="nav navbar-nav">
+            {% if app.user%}
+            <li class="active"><a href="{{ path('create_articles') }}"> Gérer Articles</a></li>
+            <li><a href="{{ path('Articles') }}">Voire les articles</a></li>
+            <li><a href="{{ path('manage') }}">Gérer Utilisateurs</a></li>
+            <li><a href="{{ path('show_articles') }}" class="navbar-icon"><span class="glyphicon glyphicon-comment"></span></a></li>
+            {% else %}
+            <li><a href="{{ path('home') }}">Accueil</a></li>
+            <li><a href="{{ path('Articles') }}">Articles</a></li>
+            <li><a href="{{ path('propos') }}">A propos</a></li>
+            {% endif%}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if app.user%}
+            <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+            {% else %}
+            <li><a  href="{{ path('Form') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a  href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif%}
+          </ul>
+      </div>
+    </nav>
+  </header>
+  {% block contenu %}
+
+  {% endblock %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+  {% block script %}
+
+  {% endblock %}
+  </script>
+</body>
+</html>
