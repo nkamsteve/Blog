@@ -6,10 +6,11 @@
 br><br><br><br><br><br>
 <div class="container">
 	<div class="row">
+		{% for article in listeArticle %}
 		<div class="row">
                     <div class="col-xs-12 col-sm-3 col-md-3">
-                        <a href="#">
-                            <img src="http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/10/http-www.urchinbali.comgallery.jpg" class="img-responsive img-box img-thumbnail">
+                        <a class="img-thumbnail" style="height: 183px; width: 270px; overflow: hidden; position: relative" href="#">
+                            <img style="height: 183px; width: auto; margin: auto" src="{{asset(vich_uploader_asset(article.getCover, "imageFile"))}}" class="img-responsive img-box">
                         </a>
                     </div>
                     <div class="col-xs-12 col-sm-9 col-md-9">
@@ -17,97 +18,27 @@ br><br><br><br><br><br>
                             <div class="list-group-item">
                                 <div class="row-picture">
                                     <a href="#" title="sintret">
-                                        <img class="circle img-thumbnail img-box" src="http://sintret.com/img/andy.jpg" alt="sintret">
+                                        <img style="width: 100px; height: 100px" class="circle img-thumbnail img-box" src="http://www.pentall.com/images/default.png" alt="sintret">
                                     </a>
                                 </div>
                                 <div class="row-content">
                                     <div class="list-group-item-heading">
                                         <a href="#" title="sintret">
-                                            <small>sintret</small>
+                                            <small>{{article.getUser.getPrenom ~ " " ~ article.getUser.getNom}}</small>
                                         </a>
                                     </div>
-                                    <small>
-                                        <i class="glyphicon glyphicon-time"></i> 3 days ago via <span class="twitter"> <i class="fa fa-twitter"></i> <a target="_blank" href="https://twitter.com/sintret" alt="sintret" title="sintret">@sintret</a></span>
-                                        <br>
-                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">Explore 2 places </a></span>
-                                    </small>
+																		<small>
+												                <i  class="glyphicon glyphicon-calendar"></i><a style="margin-right: 10px">{{ article.getUpdated |date()}}</a> <i class="glyphicon glyphicon-comment"></i> <a style="margin-right: 10px" href="#comments">0 Commentaire(s)</a>
+												            </small>
                                 </div>
                             </div>
                         </div>
-                        <h4><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a></h4>
-                        <p>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</p>
+                        <h4><a href="{{path("voirArticle", {"id": article.getId})}}">{{ article.getTitre}}</a></h4>
+                        <div style="width: auto; height: 40px; overflow: hidden">{{ article.getContenu|raw}}</div>
                     </div>
                 </div>
                 <hr>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3 col-md-3">
-                        <a href="#">
-                            <img src="http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/09/http-barbacoabali.com_.jpg" class="img-responsive img-box img-thumbnail">
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9 col-md-9">
-                        <div class="list-group">
-                            <div class="list-group-item">
-                                <div class="row-picture">
-                                    <a href="#" title="sintret">
-                                        <img class="circle img-thumbnail img-box" src="http://sintret.com/img/andy.jpg" alt="sintret">
-                                    </a>
-                                </div>
-                                <div class="row-content">
-                                    <div class="list-group-item-heading">
-                                        <a href="#" title="sintret">
-                                            <small>sintret</small>
-                                        </a>
-                                    </div>
-                                    <small>
-                                        <i class="glyphicon glyphicon-time"></i> 1 month ago via <span class="twitter"> <i class="fa fa-twitter"></i> <a target="_blank" href="https://twitter.com/sintret" alt="sintret" title="sintret">@sintret</a></span>
-                                        <br>
-                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">Explore 9 places </a></span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        <h4><a href="#">Top 8 Best Bali Restaurants - WanderLuxe Magazine</a></h4>
-                        <p>We know that there’s tons to noms in Bali, but what’s the best and where are they? Here are our top 8 Seminyak Bali restaurants to visit.</p>
-                    </div>
-                </div>
-                <hr>
-
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3 col-md-3">
-                        <a href="#">
-                            <img src="http://i.huffpost.com/gen/2038950/thumbs/s-BANGKOK-NOODLES-large.jpg" class="img-responsive img-box img-thumbnail">
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9 col-md-9">
-                        <div class="list-group">
-                            <div class="list-group-item">
-                                <div class="row-picture">
-                                    <a href="#" title="sintret">
-                                        <img class="circle img-thumbnail img-box" src="http://sintret.com/img/andy.jpg" alt="sintret">
-                                    </a>
-                                </div>
-                                <div class="row-content">
-                                    <div class="list-group-item-heading">
-                                        <a href="#" title="sintret">
-                                            <small>sintret</small>
-                                        </a>
-                                    </div>
-                                    <small>
-                                        <i class="glyphicon glyphicon-time"></i> 1 month ago via <span class="twitter"> <i class="fa fa-twitter"></i> <a target="_blank" href="https://twitter.com/sintret" alt="sintret" title="sintret">@sintret</a></span>
-                                        <br>
-                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">Explore 9 places </a></span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        <h4><a href="#">These Are The Best Noodle Spots In Bangkok</a></h4>
-                        <p>BANGKOK (AP) — With its fluorescent bulbs and cafeteria-style tables, the Bangkok restaurant Raan Jay Fai wouldn't win any awards for interior decorating.              But that hasn't deterred Martha Stewart, one of the restaurant's many fans...</p>
-                    </div>
-                </div>
-                <hr>
+								{% endfor %}
 	</div>
 </div>
 {% endblock %}

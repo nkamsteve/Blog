@@ -3,9 +3,22 @@ home:
   defaults:
     _controller: TestBlogBundle:Landing:index
 create_articles:
-  path: /admin/create_articles
+  path: /admin/posts
   defaults:
     _controller: TestBlogBundle:Admin:created
+
+nouveau:
+    path: /admin/posts/new
+    defaults:
+        _controller: TestBlogBundle:Admin:nouveau
+
+voirArticle:
+    path: /article/{id}
+    defaults:
+        _controller: TestBlogBundle:Articles:voirArticle
+    requirements:
+        id: \d+
+
 Form:
   path: /inscription
   defaults:

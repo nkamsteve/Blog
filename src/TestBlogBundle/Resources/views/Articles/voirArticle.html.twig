@@ -1,0 +1,25 @@
+{% extends "TestBlogBundle::layout.html.twig" %}
+{% block contenu %}
+<div style="margin-top: 60px; min-height: 20px"></div>
+{%if article.getCover%}
+<div class='row' style='margin-bottom: 20px'>
+    <div class='col-xs-offset-1 col-xs-10 text-center'>
+        <img src="{{asset(vich_uploader_asset(article.getCover, "imageFile"))}}" class="img-thumbnail img-responsive">
+    </div>
+</div>
+ {%endif%}
+<div class="row" id="blog" style='margin-bottom: 20px'>
+    <div class="col-xs-offset-1 col-xs-10">
+        <div class="blog-content">
+            <h1>{{ article.getTitre}}</h1><hr>
+            <small>
+                <i  class="glyphicon glyphicon-calendar"></i><a style="margin-right: 10px">{{ article.getUpdated |date()}}</a> <i class="glyphicon glyphicon-user"></i> <a style="margin-right: 10px" href="#">{{article.getUser.getPrenom}}</a> <i class="glyphicon glyphicon-comment"></i> <a style="margin-right: 10px" href="#comments">0 Commentaire(s)</a>
+            </small><hr>
+            <p class='text-justify'> {{ article.getContenu|raw}}</p>
+        </div>
+    </div>
+</div>
+                <!-- ANCRE -->
+                    <div id="comments" style="visibility: hidden; margin-bottom: 20px;">__</div>
+                <!-- FIN ANCRE -->
+{% endblock %}

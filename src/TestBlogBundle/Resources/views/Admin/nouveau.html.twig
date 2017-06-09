@@ -1,0 +1,71 @@
+{% extends "TestBlogBundle::layout.html.twig" %}
+{% block contenu %}
+<div style="margin-top: 20px">
+{{form_start(form)}}
+<div class='row' style='margin-bottom: 20px'>
+    <div class='col-xs-offset-1 col-xs-10 text-center'>
+        <img id="previewImg" src="{{asset("images/couverture_article/default.png")}}" class="img-thumbnail img-responsive"><br>
+        <br><div class="row">
+            <div class="col-md-6">
+                {{form_widget(form.cover.imageFile, {"attr": {"class":"filestyle"},  "id":"media_file" } )}}
+            </div>
+            <div class="col-md-6 text-right" >
+                <label class="checkbox-inline"><input id="noCover" style="transform: scale(1.3); top: -2px;" type="checkbox" value="">Ne pas utiliser de photo de couverture</label>
+            </div>
+    </div>
+</div>
+<div class="row" id="blog" style='margin-bottom: 20px'>
+    <div class="col-xs-offset-1 col-xs-10">
+        <div class="blog-content">
+            <h1>{{ form_widget(form.titre, {"attr": {"Placeholder": "Titre de l'article...", "style":"font-size:24px;"} })}}</h1><hr>
+            {{ form_widget(form.contenu, {"attr": {"placeholder": "Rediger le contenu de votre article ici...",  "rows": "100", "class": "wysiwyg"} })}}
+        </div>
+    </div>
+</div>
+<div style='position: fixed; top: 60px; right: 20px;margin-bottom: 20px'>
+        <input type="submit" class="btn btn-success form-control" value="Publier">
+</div>
+{{form_end(form)}}
+</div>
+{% endblock %}
+
+
+{% block script %}
+    var defaultPic = "{{asset("images/couverture_article/default.png")}}";
+    $("#media_file").filestyle({
+        input: false,
+        iconName: "fa fa-camera",
+        buttonText: "Photo de couverture"
+    });
+
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#previewImg').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }else{
+        $('#previewImg').attr('src',defaultPic);
+    }
+}
+
+    $("#media_file").change(function(){
+        readURL(this);
+    });
+
+    $("#noCover").change(function(){
+        if($(this).is(":checked")){
+            $("#media_file").val("").clone(true);
+            readURL($("#media_file"));
+            $(".bootstrap-filestyle .badge").text("");
+            $("#media_file").prop('disabled', true);
+            $("#previewImg").css("display", "none");
+        }else{
+            $("#media_file").prop('disabled', false);
+            $("#previewImg").css("display", "inline-block");
+        }
+    });
+{% endblock %}

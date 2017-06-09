@@ -19,13 +19,14 @@
           </div>
           <ul class="nav navbar-nav">
             {% if app.user%}
-            <li class="active"><a href="{{ path('create_articles') }}"> Gérer Articles</a></li>
+            {% if is_granted("ROLE_ADMIN")%}<li class="active"><a href="{{ path('create_articles') }}"> Gérer Articles</a></li>{% endif%}
+            <li><a href="{{ path('home') }}">Accueil</a></li>
             <li><a href="{{ path('Articles') }}">Voire les articles</a></li>
-            <li><a href="{{ path('manage') }}">Gérer Utilisateurs</a></li>
+            {% if is_granted("ROLE_ADMIN")%}<li><a href="{{ path('manage') }}">Gérer Utilisateurs</a></li>{% endif%}
             <li><a href="{{ path('show_articles') }}" class="navbar-icon"><span class="glyphicon glyphicon-comment"></span></a></li>
             {% else %}
             <li><a href="{{ path('home') }}">Accueil</a></li>
-            <li><a href="{{ path('Articles') }}">Articles</a></li>
+            <li><a href="{{ path('Articles') }}">Voire les articles</a></li>
             <li><a href="{{ path('propos') }}">A propos</a></li>
             {% endif%}
           </ul>
@@ -45,6 +46,29 @@
   {% endblock %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{ asset('js/bootstrap-filestyle.min.js') }}"> </script>
+  <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+  <script>
+
+      tinymce.init({
+          selector: '.wysiwyg',
+          height: 1000,
+          relative_urls: false,
+          convert_urls: false,
+          remove_script_host : false,
+          menubar: false,
+          plugins: [
+              'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+              'searchreplace wordcount visualblocks visualchars code fullscreen',
+              'insertdatetime media nonbreaking save table contextmenu directionality',
+              'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+          ],
+          toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link unlink image media | emoticons ',
+          content_css: '//www.tinymce.com/css/codepen.min.css',
+          media_live_embeds: true,
+        });
+  </script>
+
   <script>
   {% block script %}
 

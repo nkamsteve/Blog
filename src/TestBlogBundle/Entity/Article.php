@@ -63,7 +63,7 @@ class Article
      private $user;
 
      /**
-     * @ORM\OneToOne(targetEntity="TestBlogBundle\Entity\Media")
+     * @ORM\OneToOne(targetEntity="TestBlogBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="cover_id", referencedColumnName="id")
      */
     private $cover;
@@ -74,7 +74,15 @@ class Article
         */
         private $commentaires;
 
+        /**
+     * CONSTRUCTEUR
+     */
 
+    public function __construct() {
+        $this->updated = new \DateTime("now");
+        $this->created = new \DateTime("now");
+        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -255,13 +263,6 @@ class Article
     public function getCover()
     {
         return $this->cover;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

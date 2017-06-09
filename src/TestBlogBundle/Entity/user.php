@@ -19,17 +19,22 @@ class user implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string", length=25, unique=false)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string", length=255, unique=false)
+     */
+    private $role;
+
+    /**
+     * @ORM\Column(type="string", length=25, unique=false)
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string", length=25, unique=false)
      */
     private $username;
 
@@ -84,7 +89,7 @@ class user implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array(''.$this->role);
     }
 
     public function eraseCredentials()
@@ -317,5 +322,29 @@ class user implements UserInterface, \Serializable
     public function getCommentaires()
     {
         return $this->commentaires;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return user
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

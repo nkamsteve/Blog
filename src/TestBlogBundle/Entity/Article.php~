@@ -74,7 +74,15 @@ class Article
         */
         private $commentaires;
 
+        /**
+     * CONSTRUCTEUR
+     */
 
+    public function __construct() {
+        $this->updated = new \DateTime("now");
+        $this->created = new \DateTime("now");
+        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -255,5 +263,39 @@ class Article
     public function getCover()
     {
         return $this->cover;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \TestBlogBundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function addCommentaire(\TestBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \TestBlogBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\TestBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }

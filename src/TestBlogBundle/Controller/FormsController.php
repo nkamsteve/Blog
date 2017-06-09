@@ -38,7 +38,7 @@ class FormsController extends Controller
         // $form->getData() holds the submitted values
         // but, the original `$user` variable has also been updated
         $user = $form->getData();
-
+        $user->setRole("USER_ROLE");
         $user->setPassword($this->get("security.password_encoder")->encodePassword($user, $user->getPassword()));
         $em = $this->getDoctrine()->getManager();
          $em->persist($user);
